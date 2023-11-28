@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista De Reservas{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Lista De Reservas</h1>
+
+        {% for reserva in Lista %}
+            <div class="card mb-3 border-dark shadow">
+                <div class="card-body">
+                    <h4 class="card-title mb-2 text-center">{{ reserva.nombre }}</h4>
+                    <p class="card-text mb-2"><strong>Teléfono:</strong> {{ reserva.telefono }}</p>
+                    <hr class="my-2"> 
+                    <p class="card-text mb-2"><strong>Fecha y Hora de Reserva:</strong> {{ reserva.fechayHoraDeReserva }}</p>
+                    <hr class="my-2"> 
+                    <p class="card-text mb-2"><strong>Cantidad de Personas:</strong> {{ reserva.cantidadDePersonas }}</p>
+                    <hr class="my-2"> 
+                    <p class="card-text mb-2"><strong>Correo:</strong> {{ reserva.correo }}</p>
+                    <hr class="my-2"> 
+                    <p class="card-text mb-2"><strong>Estado:</strong> {{ reserva.estado }}</p>
+                    {% if reserva.observaciones %}
+                        <hr class="my-2"> 
+                        <p class="card-text mb-2"><strong>Observaciones:</strong> {{ reserva.observaciones }}</p>
+                    {% endif %}
+                </div>
+                <a href="{% url 'BorrarReserva' reserva.id %}" class="btn btn-danger"><i class="bi bi-trash"></i> Borrar Reserva</a>
+                <a href="{% url 'EditarReserva' reserva.id %}" class="btn btn-warning"><i class="bi bi-pen"></i> Editar Reserva</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
